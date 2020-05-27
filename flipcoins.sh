@@ -4,6 +4,7 @@ k=0
 coin=$((RANDOM%2))
 declare -A arr
 array=(["H"]=0 ["T"]=0)
+array1=(["HH"]=0 ["HT"]=0 ["TH"]=0 ["TT"]=0)
 
 function flip (){
     local val=$1
@@ -17,6 +18,11 @@ do
    val=2
    flip=$(flip $val)
    array[ (flip) ]=$(( ${array[flip]}+ 1 ))
+
+   val=4
+   flip=$(flip $val)
+   array1[ (flip) ]=$(( ${array1[flip]}+ 1 ))
+
 done
 
 for i in "${!array[@]}"
@@ -24,3 +30,7 @@ do
 echo "$i=>${array[$i]} percentage =$(( (${array[$i]}*100) / 50 ))"
 done
 
+for i in "${!array1[@]}"
+do
+echo "$i=>${array1[$i]} percentage =$(( (${array1[$i]}*100) / 50 ))"
+done
